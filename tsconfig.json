@@ -1,0 +1,4 @@
+{
+  "extends": "@tofrankie/tsconfig/node.lib.tsdown.json",
+  "include": ["src/**/*.ts"]
+}

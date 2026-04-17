@@ -1,0 +1,74 @@
+{
+  "name": "@tofrankie/agents-sync",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.33.0",
+  "description": "Pull skills, MCP configs, and Cursor rules from configured agent sources into your project.",
+  "author": "Frankie <1426203851@qq.com> (https://github.com/tofrankie)",
+  "license": "MIT",
+  "homepage": "https://github.com/tofrankie/agents-sync#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tofrankie/agents-sync.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tofrankie/agents-sync/issues"
+  },
+  "keywords": [
+    "agents",
+    "cursor",
+    "skills",
+    "mcp",
+    "rules",
+    "sync",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "CHANGELOG.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "prepare": "simple-git-hooks",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint": "run-s lint:prettier lint:eslint typecheck",
+    "lint:eslint": "eslint . --cache --fix",
+    "lint:prettier": "prettier . --cache --write --log-level silent",
+    "typecheck": "tsc --noEmit",
+    "publint": "publint",
+    "prepublishOnly": "run-s lint build"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@tofrankie/commitlint": "^0.0.6",
+    "@tofrankie/eslint": "^0.2.1",
+    "@tofrankie/prettier": "^0.2.0",
+    "@tofrankie/tsconfig": "^0.0.5",
+    "eslint": "^10.2.1",
+    "lint-staged": "^16.4.0",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.8.3",
+    "publint": "^0.3.18",
+    "simple-git-hooks": "^2.13.1",
+    "tsdown": "^0.21.9",
+    "typescript": "^6.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm exec commitlint --edit $1"
+  }
+}
