@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-
 import c from 'ansis'
-
 import { isKindSupported } from '@/core/agent-profiles'
 
 export interface ApplyContext {
@@ -14,29 +12,6 @@ export interface CopySummary {
   added: number
   overwritten: number
   skipped: number
-}
-
-async function exists(filePath: string): Promise<boolean> {
-  try {
-    await fs.access(filePath)
-    return true
-  } catch {
-    return false
-  }
-}
-
-async function listFilesRecursively(root: string): Promise<string[]> {
-  const out: string[] = []
-  const entries = await fs.readdir(root, { withFileTypes: true })
-  for (const entry of entries) {
-    const abs = path.join(root, entry.name)
-    if (entry.isDirectory()) {
-      out.push(...(await listFilesRecursively(abs)))
-    } else {
-      out.push(abs)
-    }
-  }
-  return out
 }
 
 export async function discoverSkills(source: string): Promise<string[]> {
@@ -164,4 +139,27 @@ export function ensureSupported(
   }
   const message = `${kind} sync is currently supported only for ${c.cyan('Cursor')}. Skipped target agent: ${targetAgent}.`
   throw new Error(message)
+}
+
+async function exists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath)
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function listFilesRecursively(root: string): Promise<string[]> {
+  const out: string[] = []
+  const entries = await fs.readdir(root, { withFileTypes: true })
+  for (const entry of entries) {
+    const abs = path.join(root, entry.name)
+    if (entry.isDirectory()) {
+      out.push(...(await listFilesRecursively(abs)))
+    } else {
+      out.push(abs)
+    }
+  }
+  return out
 }

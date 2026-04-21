@@ -1,7 +1,7 @@
 import type { SharedCommandOptions } from '@/cli/common'
 import fs from 'node:fs/promises'
-
 import path from 'node:path'
+import process from 'node:process'
 import { printSkip, resolveMcpTargetFile } from '@/cli/common'
 import { loadUserConfig, resolveOptions } from '@/core/config-loader'
 import {

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import process from 'node:process'
-
 import * as p from '@clack/prompts'
 import c from 'ansis'
 import { Command } from 'commander'

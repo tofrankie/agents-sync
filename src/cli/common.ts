@@ -1,7 +1,5 @@
 import type { AgentId } from '@/types/core'
-
 import path from 'node:path'
-
 import * as p from '@clack/prompts'
 import c from 'ansis'
 import { AGENT_PROFILES } from '@/core/agent-profiles'

@@ -1,5 +1,4 @@
 import type { SharedCommandOptions } from '@/cli/common'
-
 import path from 'node:path'
 import * as p from '@clack/prompts'
 import c from 'ansis'
@@ -21,7 +20,7 @@ export async function runSkillCommand(cwd: string, options: SharedCommandOptions
   let selected = skillDirs
   if (!runtime.yes) {
     const picked = await p.multiselect({
-      message: `Select ${c.green('skills')} to sync`,
+      message: `Select ${c.green('skills')} to sync ${c.dim(runtime.source)}`,
       options: skillDirs.map(dir => ({ label: path.basename(dir), value: dir })),
       required: false,
     })
