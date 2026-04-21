@@ -1,9 +1,9 @@
 {
   "name": "@tofrankie/agents-sync",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@10.33.0",
-  "description": "Pull skills, MCP configs, and Cursor rules from configured agent sources into your project.",
+  "description": "Sync skills, rules, and MCP from a configurable source into your project",
   "author": "Frankie <1426203851@qq.com> (https://github.com/tofrankie)",
   "license": "MIT",
   "homepage": "https://github.com/tofrankie/agents-sync#readme",
@@ -16,12 +16,14 @@
   },
   "keywords": [
     "agents",
+    "sync",
     "cursor",
+    "claude",
+    "codex",
+    "gemini",
     "skills",
     "mcp",
-    "rules",
-    "sync",
-    "cli"
+    "rules"
   ],
   "publishConfig": {
     "access": "public"
@@ -34,6 +36,9 @@
   },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
+  "bin": {
+    "agents-sync": "./dist/cli.mjs"
+  },
   "files": [
     "CHANGELOG.md",
     "dist"
@@ -45,19 +50,30 @@
     "prepare": "simple-git-hooks",
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "lint": "run-s lint:prettier lint:eslint typecheck",
+    "lint": "run-s lint:eslint lint:prettier typecheck",
     "lint:eslint": "eslint . --cache --fix",
     "lint:prettier": "prettier . --cache --write --log-level silent",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "publint": "publint",
-    "prepublishOnly": "run-s lint build"
+    "prepublishOnly": "run-s lint test build",
+    "github:release": "tfr"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.2.0",
+    "ansis": "^4.2.0",
+    "c12": "^3.3.4",
+    "commander": "^14.0.3",
+    "jiti": "^2.6.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
+    "@tofrankie/action": "^0.0.7",
     "@tofrankie/commitlint": "^0.0.6",
     "@tofrankie/eslint": "^0.2.1",
     "@tofrankie/prettier": "^0.2.0",
     "@tofrankie/tsconfig": "^0.0.5",
+    "@types/node": "^25.6.0",
     "eslint": "^10.2.1",
     "lint-staged": "^16.4.0",
     "npm-run-all2": "^8.0.4",
@@ -65,7 +81,8 @@
     "publint": "^0.3.18",
     "simple-git-hooks": "^2.13.1",
     "tsdown": "^0.21.9",
-    "typescript": "^6.0.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",

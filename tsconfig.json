@@ -1,4 +1,12 @@
 {
   "extends": "@tofrankie/tsconfig/node.lib.tsdown.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
   "include": ["src/**/*.ts"]
 }

@@ -1,0 +1,8 @@
+---
+description: Example Cursor rule for test policy.
+---
+
+# Testing Policy
+
+- Add or update tests for behavior changes.
+- Keep tests deterministic and isolated.
