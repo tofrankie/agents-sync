@@ -1,7 +1,7 @@
 {
   "name": "@tofrankie/agents-sync",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@10.33.0",
   "description": "Sync skills, rules, and MCP from a configurable source into your project",
   "author": "Frankie <1426203851@qq.com> (https://github.com/tofrankie)",
