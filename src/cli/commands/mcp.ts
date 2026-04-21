@@ -2,6 +2,7 @@ import type { SharedCommandOptions } from '@/cli/common'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
+import c from 'ansis'
 import { printSkip, resolveMcpTargetFile } from '@/cli/common'
 import { loadUserConfig, resolveOptions } from '@/core/config-loader'
 import {
@@ -23,7 +24,7 @@ export async function runMcpCommand(cwd: string, options: SharedCommandOptions):
 
   const sourceFile = await resolveMcpSourceFile(runtime.source)
   if (!sourceFile) {
-    printSkip(`No MCP config file found in ${runtime.source}.`)
+    printSkip(`No MCP config file found in ${c.dim(runtime.source)}.`)
     return
   }
 
@@ -32,11 +33,11 @@ export async function runMcpCommand(cwd: string, options: SharedCommandOptions):
   const targetFile = resolveMcpTargetFile(cwd)
 
   if (runtime.dryRun) {
-    process.stdout.write(`dry-run: MCP sync target => ${targetFile}\n`)
+    process.stdout.write(`dry-run: MCP sync target => ${c.dim(targetFile)}\n`)
     return
   }
 
   await fs.mkdir(path.dirname(targetFile), { recursive: true })
   await fs.writeFile(targetFile, rendered, 'utf8')
-  process.stdout.write(`done: MCP synced to ${targetFile}\n`)
+  process.stdout.write(`done: MCP synced to ${c.dim(targetFile)}\n`)
 }

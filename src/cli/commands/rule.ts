@@ -1,4 +1,5 @@
 import type { SharedCommandOptions } from '@/cli/common'
+import c from 'ansis'
 import { printSkip, printSummary, resolveRulesTargetDir } from '@/cli/common'
 import { loadUserConfig, resolveOptions } from '@/core/config-loader'
 import { copyRuleFiles, discoverRuleFiles } from '@/core/sync-engine'
@@ -16,7 +17,7 @@ export async function runRuleCommand(cwd: string, options: SharedCommandOptions)
 
   const files = await discoverRuleFiles(runtime.source)
   if (files.length === 0) {
-    printSkip(`No rule files found in ${runtime.source}.`)
+    printSkip(`No rule files found in ${c.dim(runtime.source)}.`)
     return
   }
 
