@@ -57,7 +57,7 @@
     "test": "vitest run",
     "publint": "publint",
     "prepublishOnly": "run-s lint test build",
-    "github:release": "tfr"
+    "github:release": "tfr --package @tofrankie/agents-sync"
   },
   "dependencies": {
     "@clack/prompts": "^1.2.0",
