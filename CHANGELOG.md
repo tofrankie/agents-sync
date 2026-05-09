@@ -1,5 +1,9 @@
 # Changelog
 
+## agents-sync@0.0.4 (2026-05-09)
+
+- No functional changes
+
 ## agents-sync@0.0.3 (2026-04-22)
 
 - Update CLI interaction
